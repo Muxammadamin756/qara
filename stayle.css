@@ -1,0 +1,224 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background: #f9f9f9;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #eee;
+}
+
+.card,
+.quiz.card {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto 30px auto;
+    background: #fff;
+    padding: 40px 32px 32px 32px;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arabic {
+    font-size: 2.8em;
+    color: #2d3a4b;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.arabic,
+#quizResult {
+    transition: all 0.4s;
+}
+
+.audio-btn {
+    margin-left: 10px;
+    font-size: 1.2em;
+    background: #f0f4fa;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.audio-btn:hover {
+    background: #dbeafe;
+}
+
+.diktant,
+.profilD {
+    color: #010101;
+    text-decoration: none;
+}
+.quiz {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.quiz input {
+    margin-right: 10px;
+}
+
+.quiz input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #2563eb;
+}
+
+.quiz label {
+    font-size: 1.1em;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.next-btn {
+    margin-top: 20px;
+}
+
+.next-btn,
+.quiz button,
+#startBtn {
+    font-size: 1.1em;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 18px;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+    box-shadow: 0 2px 8px #e0eafc;
+}
+.next-btn:hover,
+.quiz button:hover,
+#startBtn:hover {
+    background: #1e40af;
+    transform: translateY(-2px) scale(1.04);
+}
+
+#quizResult {
+    margin-top: 18px;
+    font-size: 1.2em;
+    min-height: 32px;
+    transition: all 0.4s;
+}
+
+.fade-in {
+    animation: fadeIn 0.6s;
+}
+
+.fade-out {
+    animation: fadeOut 0.4s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+.welcome-screen h1 {
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    color: #1e293b;
+    letter-spacing: 1px;
+}
+.welcome-screen h4 {
+    font-size: 1.3em;
+    color: #334155;
+    margin-bottom: 32px;
+}
+.welcome-screen button {
+    font-size: 1.2em;
+    padding: 15px 40px;
+    border-radius: 8px;
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+    box-shadow: 0 2px 8px #e0eafc;
+}
+.welcome-screen button:hover {
+    background: #1e40af;
+    transform: translateY(-2px) scale(1.04);
+}
+
+#welcome,
+#mainApp {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Telefon va kichik ekranlar uchun */
+@media (max-width: 600px) {
+    .card, .quiz.card, #mainApp {
+        max-width: 98vw !important;
+        padding: 10px !important;
+        font-size: 1em !important;
+    }
+    .arabic {
+        font-size: 2em !important;
+    }
+    .audio-btn, .check-btn, button {
+        font-size: 1em !important;
+        padding: 8px 16px !important;
+    }
+    .welcome-screen h1 {
+        font-size: 1.3em !important;
+    }
+    .quiz label {
+        display: block;
+        margin-bottom: 8px;
+    }
+}

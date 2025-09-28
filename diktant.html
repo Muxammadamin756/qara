@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Boshlang‘ich Arab Diktantlari</title>
+    <link rel="stylesheet" href="stayle.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #e0eafc;
+            padding: 36px 32px 32px 32px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.8s;
+        }
+
+        .logo {
+            width: 70px;
+            margin-bottom: 18px;
+            animation: logoPop 1s;
+        }
+
+        @keyframes logoPop {
+            0% {
+                transform: scale(0.5) rotate(-20deg);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.1) rotate(8deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .uzbek {
+            font-size: 1.3em;
+            color: #1e293b;
+            margin-bottom: 18px;
+            animation: fadeIn 0.7s;
+        }
+
+        .arab-input {
+            font-size: 1.5em;
+            padding: 10px;
+            width: 90%;
+            text-align: right;
+            direction: rtl;
+            border-radius: 8px;
+            border: 1px solid #dbeafe;
+            transition: box-shadow 0.2s;
+        }
+
+        .arab-input:focus {
+            box-shadow: 0 0 0 2px #2563eb33;
+            outline: none;
+        }
+
+        .check-btn {
+            margin-top: 18px;
+            padding: 10px 32px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            border: none;
+            background: #2563eb;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .check-btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        #result {
+            margin-top: 18px;
+            font-size: 1.2em;
+            min-height: 32px;
+            transition: color 0.3s;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-box {
+            margin-top: 30px;
+            font-size: 1.3em;
+            color: #2563eb;
+            background: #f0f4fa;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 2px 8px #e0eafc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container fade-in">
+        <img src="/photo_2024-07-11_13-50-40.jpg" alt="Logo" class="logo" />
+        <h2>Boshlang‘ich Arab diktantlari</h2>
+        <div class="uzbek" id="uzbekText"></div>
+        <input type="text" id="arabInput" class="arab-input" placeholder="Arabcha yozing..." autocomplete="off">
+        <br>
+        <button class="check-btn" id="checkBtn" onclick="checkDictation()">Tekshirish</button>
+        <div id="result"></div>
+        <button class="check-btn" id="nextBtn" onclick="nextDictation()" style="margin-top:10px; display:none;">Keyingi</button>
+        <div id="scoreBox" class="score-box" style="display:none;"></div>
+        <div style="margin-top:20px;">
+            <a href="index.html">Bosh sahifa</a>
+        </div>
+        <div id="footer" class="footer" oncopy="return false" style="user-select: none; -webkit-user-select: none; font-size: 0.9em; color: #888; margin-top: 30px;">
+            © 2024 Arab tili o‘rganish platformasi
+        </div>
+    </div>
+
+    <script>
+        // 30 ta diktant so‘zi
+        const dictations = [
+            { uzbek: "kitob", arab: "كِتَابٌ" },
+            { uzbek: "uy", arab: "بَيْتٌ" },
+            { uzbek: "suv", arab: "مَاءٌ" },
+            { uzbek: "bola", arab: "وَلَدٌ" },
+            { uzbek: "ruchka", arab: "قَلَمٌ" },
+            { uzbek: "qiz", arab: "بِنْتٌ" },
+            { uzbek: "sut", arab: "لَبَنٌ" },
+            { uzbek: "non", arab: "خُبْزٌ" },
+            { uzbek: "daraxt", arab: "شَجَرَةٌ" },
+            { uzbek: "o‘qituvchi", arab: "مُعَلِّمٌ" },
+            { uzbek: "stol", arab: "مَكْتَبٌ" },
+            { uzbek: "oy", arab: "قَمَرٌ" },
+            { uzbek: "quyosh", arab: "شَمْسٌ" },
+            { uzbek: "maktab", arab: "مَدْرَسَةٌ" },
+            { uzbek: "ota", arab: "أَبٌ" },
+            { uzbek: "ona", arab: "أُمٌّ" },
+            { uzbek: "do‘st", arab: "صَدِيقٌ" },
+            { uzbek: "o‘quvchi", arab: "تِلْمِيذٌ" },
+            { uzbek: "ko‘z", arab: "عَيْنٌ" },
+            { uzbek: "quloq", arab: "أُذُنٌ" },
+            { uzbek: "burun", arab: "أَنْفٌ" },
+            { uzbek: "og‘iz", arab: "فَمٌ" },
+            { uzbek: "qo‘l", arab: "يَدٌ" },
+            { uzbek: "oyoq", arab: "رِجْلٌ" },
+            { uzbek: "deraza", arab: "نَافِذَةٌ" },
+            { uzbek: "eshik", arab: "بَابٌ" },
+            { uzbek: "devor", arab: "جِدَارٌ" },
+            { uzbek: "dars", arab: "دَرْسٌ" },
+            { uzbek: "sinfxona", arab: "فَصْلٌ" },
+            { uzbek: "telefon", arab: "هَاتِفٌ" }
+        ];
+
+        let current = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        function loadDictation(anim = true) {
+            document.getElementById('uzbekText').textContent = dictations[current].uzbek;
+            document.getElementById('arabInput').value = '';
+            document.getElementById('result').textContent = '';
+            document.getElementById('checkBtn').disabled = false;
+            document.getElementById('nextBtn').style.display = "none";
+            if (anim) {
+                document.getElementById('uzbekText').classList.remove('fade-in');
+                setTimeout(() => {
+                    document.getElementById('uzbekText').classList.add('fade-in');
+                }, 10);
+            }
+        }
+
+        function checkDictation() {
+            const userInput = document.getElementById('arabInput').value.trim();
+            const correct = dictations[current].arab.trim();
+            const result = document.getElementById('result');
+            document.getElementById('checkBtn').disabled = true;
+            document.getElementById('nextBtn').style.display = "none";
+            if (userInput === correct) {
+                result.textContent = "To‘g‘ri!";
+                result.style.color = "green";
+                correctCount++;
+            } else {
+                result.textContent = "Noto‘g‘ri. To‘g‘ri javob: " + correct;
+                result.style.color = "red";
+                wrongCount++;
+            }
+            result.classList.remove('fade-in');
+            setTimeout(() => {
+                result.classList.add('fade-in');
+            }, 10);
+
+            // 1 soniyadan so‘ng avtomatik keyingi savol yoki natija
+            setTimeout(() => {
+                current++;
+                if (current < dictations.length) {
+                    loadDictation();
+                } else {
+                    showScore();
+                }
+            }, 1000);
+        }
+
+        function nextDictation() {
+            current++;
+            if (current < dictations.length) {
+                loadDictation();
+            } else {
+                showScore();
+            }
+        }
+
+        function showScore() {
+            document.querySelector('.container').innerHTML = `
+                <img src="/photo_2024-07-11_13-50-40.jpg" alt="Logo" class="logo" />
+                <h2>Natijangiz</h2>
+                <div class="score-box">
+                    To‘g‘ri javoblar: <b>${correctCount}</b> ta<br>
+                    Noto‘g‘ri javoblar: <b>${wrongCount}</b> ta<br>
+                    Umumiy ball: <b>${Math.round((correctCount / dictations.length) * 100)}%</b>
+                </div>
+                <div style="margin-top:24px;">
+                    <a href="diktant.html" class="check-btn">Qayta boshlash</a>
+                    <a href="index.html" class="check-btn" style="margin-left:10px;">Bosh sahifa</a>
+                </div>
+            `;
+        }
+
+        window.onload = loadDictation;
+    </script>
+</body>
+
+</html>
