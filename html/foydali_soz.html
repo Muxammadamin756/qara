@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Foydali arab so‘zlar</title>
+    <link rel="stylesheet" href="stayle.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        nav {
+            margin-bottom: 18px;
+            text-align: center;
+            animation: fadeInNav 1s;
+        }
+
+        nav a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #1e40af;
+            text-decoration: underline;
+        }
+
+        #alertBox {
+            display: none;
+            background: #fee2e2;
+            color: #b91c1c;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 10px 0 18px 0;
+            animation: fadeInAlert 0.5s;
+        }
+
+        @keyframes fadeInAlert {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #e0eafc;
+            padding: 36px 32px 32px 32px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 24px;
+        }
+
+        .flashcards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+        }
+
+        .card {
+            width: 170px;
+            height: 110px;
+            background: #f0f4fa;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px #e0eafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #1e293b;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            user-select: none;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.04) rotate(-2deg);
+            box-shadow: 0 4px 16px #c7d2fe;
+            background: #e0e7ff;
+        }
+
+        .card.flipped {
+            background: #2563eb;
+            color: #fff;
+            transform: scale(1.04) rotate(2deg);
+        }
+
+        .card .arabic {
+            font-size: 1.3em;
+            color: #2563eb;
+            direction: rtl;
+            margin-bottom: 6px;
+        }
+
+        .card.flipped .arabic {
+            color: #fff;
+        }
+
+        @media (max-width: 700px) {
+            .flashcards {
+                gap: 10px;
+            }
+
+            .card {
+                width: 45vw;
+                min-width: 120px;
+                height: 90px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 10px;
+            }
+
+            .card {
+                width: 90vw;
+                min-width: 100px;
+                height: 70px;
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Bosh sahifa</a> |
+        <a href="profil.html">Profil</a> |
+        <a href="diktant.html" id="diktantLink">Diktant</a> |
+        <a href="foydali_soz.html">Foydali so‘zlar</a>
+    </nav>
+    <div id="alertBox">
+        Bu hozir qayta ishlanmoqda
+    </div>
+    <div class="container">
+        <h2>Foydali arab so‘zlarni kartochkalar bilan yodlang!</h2>
+        <div class="flashcards" id="flashcards"></div>
+        <div style="margin-top:24px; text-align:center;">
+            <a href="index.html">Bosh sahifa</a>
+        </div>
+    </div>
+    <script>
+        // Diktant linki bosilganda ogohlantirish chiqadi
+        document.getElementById('diktantLink').onclick = function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('alertBox');
+            alertBox.style.display = "block";
+            alertBox.style.animation = "fadeInAlert 0.5s";
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 2500);
+        };
+
+        // So‘zlar ro‘yxati
+        const words = [
+            { uz: "Salom", ar: "السَّلَامُ عَلَيْكُمْ", tr: "Assalomu alaykum" },
+            { uz: "Xayr", ar: "مَعَ السَّلَامَةِ", tr: "Xayr, salomat bo‘ling" },
+            { uz: "Rahmat", ar: "شُكْرًا", tr: "Rahmat" },
+            { uz: "Iltimos", ar: "مِنْ فَضْلِكَ", tr: "Iltimos" },
+            { uz: "Ha", ar: "نَعَمْ", tr: "Ha" },
+            { uz: "Yo‘q", ar: "لَا", tr: "Yo‘q" },
+            { uz: "Kechirasiz", ar: "عَفْوًا", tr: "Kechirasiz" },
+            { uz: "Qayerda?", ar: "أَيْنَ؟", tr: "Qayerda?" },
+            { uz: "Nechta?", ar: "كَمْ؟", tr: "Nechta?" },
+            { uz: "Ism", ar: "اِسْمٌ", tr: "Ism" },
+            { uz: "Uy", ar: "بَيْتٌ", tr: "Uy" },
+            { uz: "Do‘st", ar: "صَدِيقٌ", tr: "Do‘st" },
+            { uz: "Ota", ar: "أَبٌ", tr: "Ota" },
+            { uz: "Ona", ar: "أُمٌّ", tr: "Ona" },
+            { uz: "Bola", ar: "وَلَدٌ", tr: "Bola" },
+            { uz: "Qiz", ar: "بِنْتٌ", tr: "Qiz" },
+            { uz: "Maktab", ar: "مَدْرَسَةٌ", tr: "Maktab" },
+            { uz: "Ruchka", ar: "قَلَمٌ", tr: "Ruchka" },
+            { uz: "Kitob", ar: "كِتَابٌ", tr: "Kitob" },
+            { uz: "Suv", ar: "مَاءٌ", tr: "Suv" },
+            { uz: "Non", ar: "خُبْزٌ", tr: "Non" },
+            { uz: "Stol", ar: "مَكْتَبٌ", tr: "Stol" },
+            { uz: "Telefon", ar: "هَاتِفٌ", tr: "Telefon" },
+            { uz: "Yaxshi", ar: "جَيِّدٌ", tr: "Yaxshi" },
+            { uz: "Katta", ar: "كَبِيرٌ", tr: "Katta" },
+            { uz: "Kichik", ar: "صَغِيرٌ", tr: "Kichik" },
+            { uz: "Yangi", ar: "جَدِيدٌ", tr: "Yangi" },
+            { uz: "Eski", ar: "قَدِيمٌ", tr: "Eski" },
+            { uz: "Oson", ar: "سَهْلٌ", tr: "Oson" },
+            { uz: "Qiyin", ar: "صَعْبٌ", tr: "Qiyin" },
+            { uz: "Qayerga?", ar: "إِلَى أَيْنَ؟", tr: "Qayerga?" },
+            { uz: "Qachon?", ar: "مَتَى؟", tr: "Qachon?" },
+            { uz: "Nima?", ar: "مَاذَا؟", tr: "Nima?" },
+            { uz: "Kim?", ar: "مَنْ؟", tr: "Kim?" },
+            { uz: "Qanday?", ar: "كَيْفَ؟", tr: "Qanday?" },
+            { uz: "Sabah hayr", ar: "صَبَاحُ الْخَيْرِ", tr: "Xayrli tong" },
+            { uz: "Kech hayr", ar: "مَسَاءُ الْخَيْرِ", tr: "Xayrli kech" },
+            { uz: "Mayli", ar: "لَا بَأْسَ", tr: "Mayli" },
+            { uz: "Tez", ar: "سَرِيعٌ", tr: "Tez" },
+            { uz: "Sevgi", ar: "حُبٌّ", tr: "Sevgi" },
+            { uz: "Oila", ar: "عَائِلَةٌ", tr: "Oila" },
+            { uz: "Do‘kon", ar: "دُكَّانٌ", tr: "Do‘kon" },
+            { uz: "Bozor", ar: "سُوقٌ", tr: "Bozor" },
+            { uz: "Shahar", ar: "مَدِينَةٌ", tr: "Shahar" },
+            { uz: "Qishloq", ar: "قَرْيَةٌ", tr: "Qishloq" },
+            { uz: "O‘qituvchi (ayol)", ar: "مُعَلِّمَةٌ", tr: "O‘qituvchi (ayol)" }
+        ];
+
+        // Kartochkalarni chiqarish
+        const flashcards = document.getElementById('flashcards');
+        words.forEach((w, i) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<div class="arabic">${w.ar}</div><div>${w.uz}</div>`;
+            card.onclick = function() {
+                if (card.classList.contains('flipped')) {
+                    card.innerHTML = `<div class="arabic">${w.ar}</div><div>${w.uz}</div>`;
+                    card.classList.remove('flipped');
+                } else {
+                    card.innerHTML = `<div>${w.tr}</div><div class="arabic">${w.ar}</div>`;
+                    card.classList.add('flipped');
+                }
+            };
+            flashcards.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>
+`

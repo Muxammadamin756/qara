@@ -5,13 +5,31 @@
     <meta charset="UTF-8">
     <title>Boshlang‘ich Arab Diktantlari</title>
     <link rel="stylesheet" href="stayle.css">
-    <link rel="stylesheet" href="/html/index.html">
-    <link rel="stylesheet" href="/html/profil.html">
-    <link rel="stylesheet" href="/html/diktant.html">
     <style>
         body {
+            background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
             font-family: Arial, sans-serif;
-            background: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        nav {
+            margin-bottom: 18px;
+            text-align: center;
+            animation: fadeInNav 1s;
+        }
+
+        nav a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #1e40af;
+            text-decoration: underline;
         }
 
         .container {
@@ -120,11 +138,30 @@
             padding: 18px;
             box-shadow: 0 2px 8px #e0eafc;
         }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .arab-input {
+                font-size: 1.1em;
+            }
+
+            .logo {
+                width: 50px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <a href="./index.html"></a>
+    <nav>
+        <a href="index.html">Bosh sahifa</a> |
+        <a href="profil.html">Profil</a> |
+        <a href="diktant.html">Diktant</a> |
+        <a href="foydali_soz.html">Foydali so‘zlar</a>
+    </nav>
     <div class="container fade-in">
         <img src="/photo_2024-07-11_13-50-40.jpg" alt="Logo" class="logo" />
         <h2>Boshlang‘ich Arab diktantlari</h2>
@@ -253,6 +290,8 @@
                 <div style="margin-top:24px;">
                     <a href="diktant.html" class="check-btn">Qayta boshlash</a>
                     <a href="index.html" class="check-btn" style="margin-left:10px;">Bosh sahifa</a>
+                    <a href="profil.html" class="check-btn" style="margin-left:10px;">Profil</a>
+                    <a href="foydali_soz.html" class="check-btn" style="margin-left:10px;">Foydali so‘zlar</a>
                 </div>
             `;
         }

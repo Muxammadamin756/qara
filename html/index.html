@@ -1,18 +1,197 @@
 <!DOCTYPE html>
 <html lang="uz">
-<a href="./davlat.html"></a>
-<a class="profilD" href="./profil.html">Profil</a>
-<link rel="stylesheet" href="/stayle.css">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arab Tilini O‘rganish Dasturi</title>
     <link rel="stylesheet" href="stayle.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        nav {
+            margin-bottom: 18px;
+            text-align: center;
+            animation: fadeInNav 1s;
+        }
+        nav a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #1e40af;
+            text-decoration: underline;
+        }
+        #alertBox {
+            display: none;
+            background: #fee2e2;
+            color: #b91c1c;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 10px 0 18px 0;
+            animation: fadeInAlert 0.5s;
+        }
+        @keyframes fadeInAlert {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .welcome-screen {
+            text-align: center;
+            margin-top: 40px;
+            animation: fadeInMain 1.2s;
+        }
+        .welcome-screen h1 {
+            font-size: 2.2em;
+            color: #2563eb;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            animation: popIn 1.2s;
+        }
+        .welcome-screen h4 {
+            color: #334155;
+            margin-bottom: 24px;
+            animation: fadeInMain 1.5s;
+        }
+        #startBtn {
+            padding: 12px 36px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            border: none;
+            background: #2563eb;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #c7d2fe;
+            transition: background 0.2s, transform 0.2s;
+            animation: popIn 1.4s;
+        }
+        #startBtn:hover {
+            background: #1e40af;
+            transform: scale(1.04);
+        }
+        @keyframes fadeInNav {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInMain {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7);}
+            70% { opacity: 1; transform: scale(1.08);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+        .card, .quiz.card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #e0eafc;
+            padding: 28px 24px 20px 24px;
+            margin: 0 auto 18px auto;
+            max-width: 420px;
+            animation: fadeInMain 1.2s;
+        }
+        .arabic {
+            font-size: 2em;
+            color: #2563eb;
+            margin-bottom: 12px;
+            direction: rtl;
+            animation: popIn 1.2s;
+        }
+        .audio-btn {
+            background: #f0f4fa;
+            color: #2563eb;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .audio-btn:hover {
+            background: #dbeafe;
+        }
+        .quiz label {
+            margin-right: 18px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        .quiz input[type="radio"] {
+            margin-right: 6px;
+        }
+        .check-btn, .quiz button {
+            margin-top: 18px;
+            padding: 10px 32px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            border: none;
+            background: #2563eb;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .check-btn:hover, .quiz button:hover {
+            background: #1e40af;
+            transform: translateY(-2px) scale(1.04);
+        }
+        #quizResult {
+            margin-top: 18px;
+            font-size: 1.2em;
+            min-height: 32px;
+            transition: color 0.3s;
+        }
+        .fade-in {
+            animation: fadeInMain 0.6s;
+        }
+        .fade-out {
+            animation: fadeOutMain 0.4s forwards;
+        }
+        @keyframes fadeOutMain {
+            to { opacity: 0; transform: translateY(40px);}
+        }
+        @media (max-width: 600px) {
+            .card, .quiz.card, #mainApp {
+                max-width: 98vw !important;
+                padding: 10px !important;
+                font-size: 1em !important;
+            }
+            .arabic {
+                font-size: 1.3em !important;
+            }
+            .audio-btn, .check-btn, button {
+                font-size: 1em !important;
+                padding: 8px 16px !important;
+            }
+            .welcome-screen h1 {
+                font-size: 1.3em !important;
+            }
+            .quiz label {
+                display: block;
+                margin-bottom: 8px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <a class="diktant" href="/html/diktant.html">Diktant</a>
+    <nav>
+        <a href="index.html">Bosh sahifa</a> |
+        <a href="profil.html">Profil</a> |
+        <a href="diktant.html" id="diktantLink">Diktant</a> |
+        <a href="foydali_soz.html">Foydali so‘zlar</a>
+    </nav>
+    <div id="alertBox">
+        Bu hozir qayta ishlanmoqda
+    </div>
+
     <div id="welcome" class="welcome-screen">
         <h1>Arab Tilini O‘rganish Dasturi</h1>
         <h4>bunda siz arab tili so‘zlaringizni mustahkamlab olishingiz mumkin</h4>
@@ -40,6 +219,7 @@
     </div>
 
     <script>
+
         const words = [
             { arabic: "كِتَابٌ", translation: "kitob", audio: "./OVoz/kitob.mp3", options: ["kitob", "olma", "uy"] },
             { arabic: "قَلَمٌ", translation: "Qalam", audio: "./OVoz/qolam.mp3", options: ["Qalam", "daraxt", "stol"] },
@@ -168,6 +348,9 @@
                 }, 10);
                 // Yordam oynasini ko‘rsatish
                 document.getElementById('helpBox').style.display = "block";
+                // Xato bo‘lsa ovoz chiqarish
+                const audio = new Audio('audio/error.mp3');
+                audio.play();
             }
         }
 
@@ -183,9 +366,18 @@
                 reshuffleWords();
                 loadWord();
             };
+
+            // Diktant linki bosilganda ogohlantirish chiqadi
+            document.getElementById('diktantLink').onclick = function(e) {
+                e.preventDefault();
+                document.getElementById('alertBox').style.display = "block";
+                setTimeout(() => {
+                    document.getElementById('alertBox').style.display = "none";
+                }, 2500);
+            };
         };
     </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=1xUOhjqj"></script>
 </body>
 
 </html>
-````

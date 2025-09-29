@@ -5,13 +5,31 @@
     <meta charset="UTF-8">
     <title>Mening profilim</title>
     <link rel="stylesheet" href="stayle.css">
-    <link rel="stylesheet" href="/html/index.html">
-    <link rel="stylesheet" href="/html/diktant.html">
-    <link rel="stylesheet" href="/html/profil.html">
     <style>
         body {
-            background: #f9f9f9;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
             font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        nav {
+            margin-bottom: 18px;
+            text-align: center;
+            animation: fadeInNav 1s;
+        }
+
+        nav a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #1e40af;
+            text-decoration: underline;
         }
 
         .profile-container {
@@ -22,6 +40,20 @@
             box-shadow: 0 4px 24px #e0eafc;
             padding: 36px 32px 32px 32px;
             text-align: center;
+            animation: fadeInProfile 1s;
+            position: relative;
+        }
+
+        @keyframes fadeInProfile {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .profile-img {
@@ -32,18 +64,49 @@
             margin-bottom: 18px;
             border: 4px solid #2563eb22;
             box-shadow: 0 2px 8px #e0eafc;
+            animation: popImg 1.2s;
+        }
+
+        @keyframes popImg {
+            0% {
+                transform: scale(0.7) rotate(-10deg);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.1) rotate(8deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) rotate(0);
+            }
         }
 
         .profile-name {
             font-size: 1.5em;
             color: #1e293b;
             margin-bottom: 10px;
+            animation: fadeInText 1.2s;
         }
 
         .profile-info {
             font-size: 1.1em;
             color: #334155;
             margin-bottom: 18px;
+            animation: fadeInText 1.4s;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .back-link {
@@ -52,24 +115,47 @@
             color: #2563eb;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.2s, transform 0.2s;
+            animation: fadeInText 1.6s;
         }
 
         .back-link:hover {
             text-decoration: underline;
+            color: #1e40af;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                padding: 10px;
+            }
+
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .profile-name {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
 
 <body>
-    <a href="/index.html">Bosh sahifa</a>
-    <a href="/diktant.html"></a>
+    <nav>
+        <a href="index.html">Bosh sahifa</a> |
+        <a href="profil.html">Profil</a> |
+        <a href="diktant.html">Diktant</a> |
+        <a href="foydali_soz.html">Foydali so‘zlar</a>
+    </nav>
     <div class="profile-container">
         <img src="/photo_2024-07-11_13-50-40.jpg" alt="Mening rasmi" class="profile-img">
         <div class="profile-name">Muhammadamin</div>
         <div class="profile-info">
-            <p>sir</p>
+            <p>Yosh: sir</p>
             <p>Kasb: Talaba</p>
-            <p>bu men bu dasturni 1 hafta davomida chiqazdim etborilar uchun rahmat</p>
+            <p>Bu men, bu dasturni 1 hafta davomida chiqardim. E'tiboringiz uchun rahmat!</p>
             <p>Qisqacha: Men arab tilini o‘rganishni va boshqalarga ham o‘rgatishni yaxshi ko‘raman.</p>
         </div>
         <a href="index.html" class="back-link">⬅ Bosh sahifa</a>
