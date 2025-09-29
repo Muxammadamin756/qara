@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title>Boshlang‘ich Arab Diktantlari</title>
     <link rel="stylesheet" href="stayle.css">
-    <link rel="stylesheet" href="index.html">
-    <link rel="stylesheet" href="./profil.html">
+    <link rel="stylesheet" href="/html/index.html">
+    <link rel="stylesheet" href="/html/profil.html">
+    <link rel="stylesheet" href="/html/diktant.html">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -211,6 +212,9 @@
                 result.textContent = "Noto‘g‘ri. To‘g‘ri javob: " + correct;
                 result.style.color = "red";
                 wrongCount++;
+                // Xato bo‘lsa ovoz chiqarish
+                const audio = new Audio('/OVoz/Xato.mp3');
+                audio.play();
             }
             result.classList.remove('fade-in');
             setTimeout(() => {
