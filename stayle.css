@@ -188,7 +188,7 @@ html {
 }
 .welcome-screen button:hover {
     background: #1e40af;
-    transform: translateY(-2px) scale(1.04);
+    transform: translateY(-2px) scale(1.05);
 }
 
 #welcome,
@@ -202,7 +202,9 @@ html {
 
 /* Telefon va kichik ekranlar uchun */
 @media (max-width: 600px) {
-    .card, .quiz.card, #mainApp {
+    .card,
+    .quiz.card,
+    #mainApp {
         max-width: 98vw !important;
         padding: 10px !important;
         font-size: 1em !important;
@@ -210,7 +212,9 @@ html {
     .arabic {
         font-size: 2em !important;
     }
-    .audio-btn, .check-btn, button {
+    .audio-btn,
+    .check-btn,
+    button {
         font-size: 1em !important;
         padding: 8px 16px !important;
     }
