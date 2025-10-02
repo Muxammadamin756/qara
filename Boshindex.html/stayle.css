@@ -87,7 +87,7 @@ body {
     left: 0;
 }
 
-.nav_link a {
+.nav__link a {
     color: #00c3ff;
     text-decoration: none;
     margin: 0 1.5em;
