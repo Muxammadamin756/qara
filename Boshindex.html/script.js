@@ -27,6 +27,13 @@ function loadWord(anim = true) {
     const quizRes = document.getElementById('quizResult');
 
     arabicEl.textContent = w.arabic;
+    arabicEl.style.opacity = 0;
+    setTimeout(() => {
+        arabicEl.style.animation = '';
+        arabicEl.classList.remove('fade-in');
+        arabicEl.style.opacity = 1;
+    }, 10);
+
     translationEl.textContent = w.translation;
     quizQ.textContent = `"${w.arabic}" so‘zining tarjimasini tanlang:`;
 

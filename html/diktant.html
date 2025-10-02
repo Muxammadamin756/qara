@@ -2,154 +2,227 @@
 <html lang="uz">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Boshlang‘ich Arab Diktantlari</title>
-    <link rel="stylesheet" href="stayle.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diktant - Zamonaviy</title>
+    <link rel="stylesheet" href="../Boshindex.html/stayle.css" />
     <style>
+        /* Zamonaviy, responsiv dizayn */
+        :root {
+            --brand: #00c3ff;
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #94a3b8;
+        }
+
         body {
-            background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
-            font-family: Arial, sans-serif;
+            margin: 0;
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            background: linear-gradient(180deg, #071226 0%, #071b2b 60%);
+            color: #e6eef8;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 18px;
         }
 
         nav {
-            margin-bottom: 18px;
+            width: 100%;
+            max-width: 980px;
+            margin-bottom: 12px;
             text-align: center;
-            animation: fadeInNav 1s;
         }
 
         nav a {
-            color: #2563eb;
+            color: var(--brand);
             text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
-            font-size: 1.1em;
-            transition: color 0.2s;
+            margin: 0 8px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 600
         }
 
+        nav a.active,
         nav a:hover {
-            color: #1e40af;
-            text-decoration: underline;
+            background: rgba(0, 195, 255, 0.12);
+            color: #fff
         }
 
-        .container {
-            max-width: 500px;
-            margin: 60px auto;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #e0eafc;
-            padding: 36px 32px 32px 32px;
-            text-align: center;
-            position: relative;
-            animation: fadeIn 0.8s;
+        .wrap {
+            width: 100%;
+            max-width: 980px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .logo {
-            width: 70px;
-            margin-bottom: 18px;
-            animation: logoPop 1s;
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px
         }
 
-        @keyframes logoPop {
-            0% {
-                transform: scale(0.5) rotate(-20deg);
-                opacity: 0;
-            }
-
-            70% {
-                transform: scale(1.1) rotate(8deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1) rotate(0);
-            }
+        h1 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: #fff
         }
 
-        .uzbek {
-            font-size: 1.3em;
-            color: #1e293b;
-            margin-bottom: 18px;
-            animation: fadeIn 0.7s;
+        .controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center
         }
 
-        .arab-input {
-            font-size: 1.5em;
-            padding: 10px;
-            width: 90%;
-            text-align: right;
-            direction: rtl;
-            border-radius: 8px;
-            border: 1px solid #dbeafe;
-            transition: box-shadow 0.2s;
-        }
-
-        .arab-input:focus {
-            box-shadow: 0 0 0 2px #2563eb33;
-            outline: none;
-        }
-
-        .check-btn {
-            margin-top: 18px;
-            padding: 10px 32px;
-            font-size: 1.1em;
-            border-radius: 8px;
+        .btn {
+            background: var(--brand);
+            color: #001;
             border: none;
-            background: #2563eb;
-            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 6px 18px rgba(0, 195, 255, 0.12);
+            transition: transform .12s
         }
 
-        .check-btn:hover {
-            background: #1e40af;
-            transform: translateY(-2px) scale(1.04);
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            font-weight: 600
         }
 
-        #result {
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        .area {
             margin-top: 18px;
-            font-size: 1.2em;
-            min-height: 32px;
-            transition: color 0.3s;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 18px
         }
 
-        .fade-in {
-            animation: fadeIn 0.6s;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .score-box {
-            margin-top: 30px;
-            font-size: 1.3em;
-            color: #2563eb;
-            background: #f0f4fa;
+        .panel {
+            background: var(--card);
+            padding: 14px;
             border-radius: 12px;
-            padding: 18px;
-            box-shadow: 0 2px 8px #e0eafc;
+            border: 1px solid rgba(255, 255, 255, 0.03)
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
+        .player-title {
+            color: var(--muted);
+            font-size: .95rem;
+            margin-bottom: 8px
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            background: transparent;
+            border: 1px dashed rgba(255, 255, 255, 0.04);
+            color: #eaf6ff;
+            padding: 12px;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 1rem
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .small {
+            font-size: .92rem;
+            color: var(--muted)
+        }
+
+        .score {
+            font-weight: 800;
+            color: var(--brand)
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .sentence-box {
+            font-size: 1.8rem;
+            text-align: center;
+            direction: rtl;
+            padding: 14px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+            color: #fff;
+        }
+
+        /* translation (Uzbek) style */
+        .translation {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: var(--muted);
+            direction: ltr;
+            text-align: center;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center
+        }
+
+        .record-ind {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #7f8c8d;
+            margin-left: 8px
+        }
+
+        .record-ind.on {
+            background: #f33;
+            box-shadow: 0 0 12px #f33
+        }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        @media (max-width:880px) {
+            .area {
+                grid-template-columns: 1fr;
             }
 
-            .arab-input {
-                font-size: 1.1em;
+            .right-column {
+                order: 2
+            }
+        }
+
+        @media (max-width:420px) {
+            h1 {
+                font-size: 1rem
             }
 
-            .logo {
-                width: 50px;
+            .btn {
+                padding: 8px 10px
             }
         }
     </style>
@@ -157,146 +230,280 @@
 
 <body>
     <nav>
-        <a href="index.html">Bosh sahifa</a> |
-        <a href="profil.html">Profil</a> |
-        <a href="diktant.html">Diktant</a> |
-        <a href="foydali_soz.html">Foydali so‘zlar</a>
+        <a href="/Boshindex.html/index.html">Bosh sahifa</a>
+
+
+        <a href="./diktant.html" class="active">Diktant</a>
+        <a href="./profil.html">Profil</a>
+        <a href="./foydali_soz.html">Foydali so‘zlar</a>
+        <a href="./alifbe.html">Arab Alifbosi</a>
     </nav>
-    <div class="container fade-in">
-        <img src="/photo_2024-07-11_13-50-40.jpg" alt="Logo" class="logo" />
-        <h2>Boshlang‘ich Arab diktantlari</h2>
-        <div class="uzbek" id="uzbekText"></div>
-        <input type="text" id="arabInput" class="arab-input" placeholder="Arabcha yozing..." autocomplete="off">
-        <br>
-        <button class="check-btn" id="checkBtn" onclick="checkDictation()">Tekshirish</button>
-        <div id="result"></div>
-        <button class="check-btn" id="nextBtn" onclick="nextDictation()"
-            style="margin-top:10px; display:none;">Keyingi</button>
-        <div id="scoreBox" class="score-box" style="display:none;"></div>
-        <div style="margin-top:20px;">
-            <a href="index.html">Bosh sahifa</a>
+
+    <div class="wrap">
+        <header>
+            <h1>Diktant — tingla, yoz va tekshir</h1>
+            <div class="controls">
+                <button id="playBtn" class="btn">🔊 Tingla</button>
+                <button id="nextBtn" class="btn secondary">Keyingi</button>
+                <button id="checkBtn" class="btn">Tekshir</button>
+                <button id="showBtn" class="btn secondary">Javobni ko'rsat</button>
+            </div>
+        </header>
+
+        <div class="area">
+            <div class="panel">
+                <div class="player-title">Siz eshitganlarni shu yerga yozing:</div>
+                <textarea id="answer" placeholder="Bu yerga arabcha gapni yozing..."></textarea>
+                <div class="meta">
+                    <div class="small">So'rovlar: <span id="round">0</span>/<span id="total">0</span></div>
+                    <div class="small">Ball: <span id="score" class="score">0</span></div>
+                </div>
+                <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+                    <button id="recordStart" class="btn secondary">🎤 Yozib oling</button>
+                    <button id="recordStop" class="btn secondary">⏹ To'xtat</button>
+                    <button id="playRec" class="btn secondary">▶ Tinglash</button>
+                    <div id="recStatus" class="small" style="align-self:center">Status: <span id="recText">tayyor</span>
+                        <span id="recDot" class="record-ind"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="panel">
+                    <div class="player-title">Hozirgi gap (sir tutiladi)</div>
+                    <div id="sentenceBox" class="sentence-box">———</div>
+
+                    <div style="margin-top:10px;text-align:center" class="controls-row">
+                        <button id="replayBtn" class="btn secondary">🔁 Qayta tingla</button>
+                        <button id="revealBtn" class="btn">👁‍🗨 Ko'rsat</button>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="player-title">Sozlamalar</div>
+                    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+                        <label class="small">Takrorlashlar: <input id="repeatCount" type="number" min="1" max="5"
+                                value="2" style="width:60px;margin-left:8px"></label>
+                        <label class="small">Til (ovoz):
+                            <select id="voiceSelect">
+                                <option value="ar-SA">Arabic (Saudi)</option>
+                                <option value="ar-EG">Arabic (Egypt)</option>
+                            </select>
+                        </label>
+                        <label class="small">Seans uzunligi:
+                            <select id="lenSelect">
+                                <option value="5">5 ta gap</option>
+                                <option value="10" selected>10 ta gap</option>
+                                <option value="15">15 ta gap</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="footer" class="footer" oncopy="return false"
-            style="user-select: none; -webkit-user-select: none; font-size: 0.9em; color: #888; margin-top: 30px;">
-            © 2024 Arab tili o‘rganish platformasi
-        </div>
+
+        <footer>Mobil uchun mos va zamonaviy dizayn · Dastlabki versiya</footer>
     </div>
 
     <script>
-        // 30 ta diktant so‘zi
-        const dictations = [
-            { uzbek: "kitob", arab: "كِتَابٌ" },
-            { uzbek: "uy", arab: "بَيْتٌ" },
-            { uzbek: "suv", arab: "مَاءٌ" },
-            { uzbek: "bola", arab: "وَلَدٌ" },
-            { uzbek: "ruchka", arab: "قَلَمٌ" },
-            { uzbek: "qiz", arab: "بِنْتٌ" },
-            { uzbek: "sut", arab: "لَبَنٌ" },
-            { uzbek: "non", arab: "خُبْزٌ" },
-            { uzbek: "daraxt", arab: "شَجَرَةٌ" },
-            { uzbek: "o‘qituvchi", arab: "مُعَلِّمٌ" },
-            { uzbek: "stol", arab: "مَكْتَبٌ" },
-            { uzbek: "oy", arab: "قَمَرٌ" },
-            { uzbek: "quyosh", arab: "شَمْسٌ" },
-            { uzbek: "maktab", arab: "مَدْرَسَةٌ" },
-            { uzbek: "ota", arab: "أَبٌ" },
-            { uzbek: "ona", arab: "أُمٌّ" },
-            { uzbek: "do‘st", arab: "صَدِيقٌ" },
-            { uzbek: "o‘quvchi", arab: "تِلْمِيذٌ" },
-            { uzbek: "ko‘z", arab: "عَيْنٌ" },
-            { uzbek: "quloq", arab: "أُذُنٌ" },
-            { uzbek: "burun", arab: "أَنْفٌ" },
-            { uzbek: "og‘iz", arab: "فَمٌ" },
-            { uzbek: "qo‘l", arab: "يَدٌ" },
-            { uzbek: "oyoq", arab: "رِجْلٌ" },
-            { uzbek: "deraza", arab: "نَافِذَةٌ" },
-            { uzbek: "eshik", arab: "بَابٌ" },
-            { uzbek: "devor", arab: "جِدَارٌ" },
-            { uzbek: "dars", arab: "دَرْسٌ" },
-            { uzbek: "sinfxona", arab: "فَصْلٌ" },
-            { uzbek: "telefon", arab: "هَاتِفٌ" }
+        // Sadə zamonaviy diktant funksionalligi
+        // har bir element — arabcha gap va uning o'zbek tarjimasi
+        const sentences = [
+            { ar: "السَّلَامُ عَلَيْكُمْ", uz: "Assalomu alaykum" },
+            { ar: "كَيْفَ حَالُكَ؟", uz: "Qalaysiz? / Qanday ahvolda siz?" },
+            { ar: "أَيْنَ الْمَكْتَبُ؟", uz: "Ofis qayerda?" },
+            { ar: "هَذَا كِتَابٌ جَدِيدٌ", uz: "Bu yangi kitob." },
+            { ar: "أُحِبُّ تَعَلُّمَ الْعَرَبِيَّةِ", uz: "Men arab tilini o'rganishni yaxshi ko'raman." },
+            { ar: "الطَّقْسُ جَمِيلٌ الْيَوْمَ", uz: "Bugun havo go'zal." },
+            { ar: "هَلْ أَنْتَ مُسْتَعِدٌّ؟", uz: "Siz tayyormisiz?" },
+            { ar: "شُكْرًا جَزِيلًا", uz: "Katta rahmat." },
+            { ar: "مَوْعِدُنَا فِي السَّاعَةِ الثَّالِثَةِ", uz: "Bizning uchrashuv uchinchi soatda." },
+            { ar: "أَيْنَ الْحَمَّامُ؟", uz: "Hammom qayerda?" },
+            { ar: "هَذِهِ سَيَّارَةٌ سَرِيعَةٌ", uz: "Bu tez avtomobil." },
+            { ar: "أَذْهَبُ إِلَى الْمَدْرَسَةِ", uz: "Men maktabga boraman." }
         ];
 
-        let current = 0;
-        let correctCount = 0;
-        let wrongCount = 0;
+        // UI elems
+        const playBtn = document.getElementById('playBtn');
+        const replayBtn = document.getElementById('replayBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const checkBtn = document.getElementById('checkBtn');
+        const showBtn = document.getElementById('showBtn');
+        const revealBtn = document.getElementById('revealBtn');
+        const sentenceBox = document.getElementById('sentenceBox');
+        const answer = document.getElementById('answer');
+        const roundEl = document.getElementById('round');
+        const totalEl = document.getElementById('total');
+        const scoreEl = document.getElementById('score');
+        const repeatCount = document.getElementById('repeatCount');
+        const voiceSelect = document.getElementById('voiceSelect');
+        const lenSelect = document.getElementById('lenSelect');
+        const recStart = document.getElementById('recordStart');
+        const recStop = document.getElementById('recordStop');
+        const playRec = document.getElementById('playRec');
+        const recText = document.getElementById('recText');
+        const recDot = document.getElementById('recDot');
 
-        function loadDictation(anim = true) {
-            document.getElementById('uzbekText').textContent = dictations[current].uzbek;
-            document.getElementById('arabInput').value = '';
-            document.getElementById('result').textContent = '';
-            document.getElementById('checkBtn').disabled = false;
-            document.getElementById('nextBtn').style.display = "none";
-            if (anim) {
-                document.getElementById('uzbekText').classList.remove('fade-in');
-                setTimeout(() => {
-                    document.getElementById('uzbekText').classList.add('fade-in');
-                }, 10);
+        let pool = [];
+        let currentIdx = -1;
+        let score = 0;
+        let rounds = 10;
+        let mediaRecorder, audioBlob, audioUrl;
+
+        function pickPool(n) {
+            const arr = [...sentences];
+            shuffle(arr);
+            pool = arr.slice(0, n);
+            totalEl.textContent = pool.length;
+            roundEl.textContent = 0;
+            score = 0;
+            scoreEl.textContent = score;
+            currentIdx = -1;
+            sentenceBox.textContent = "———";
+            answer.value = "";
+        }
+
+        function shuffle(a) {
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
             }
         }
 
-        function checkDictation() {
-            const userInput = document.getElementById('arabInput').value.trim();
-            const correct = dictations[current].arab.trim();
-            const result = document.getElementById('result');
-            document.getElementById('checkBtn').disabled = true;
-            document.getElementById('nextBtn').style.display = "none";
-            if (userInput === correct) {
-                result.textContent = "To‘g‘ri!";
-                result.style.color = "green";
-                correctCount++;
-            } else {
-                result.textContent = "Noto‘g‘ri. To‘g‘ri javob: " + correct;
-                result.style.color = "red";
-                wrongCount++;
-                // Xato bo‘lsa ovoz chiqarish
-                const audio = new Audio('/OVoz/Xato.mp3');
-                audio.play();
+        function next() {
+            if (pool.length === 0) pickPool(rounds);
+            currentIdx++;
+            if (currentIdx >= pool.length) {
+                currentIdx = 0;
+                pickPool(rounds);
             }
-            result.classList.remove('fade-in');
-            setTimeout(() => {
-                result.classList.add('fade-in');
-            }, 10);
-
-            // 1 soniyadan so‘ng avtomatik keyingi savol yoki natija
-            setTimeout(() => {
-                current++;
-                if (current < dictations.length) {
-                    loadDictation();
-                } else {
-                    showScore();
-                }
-            }, 1000);
-        }
-
-        function nextDictation() {
-            current++;
-            if (current < dictations.length) {
-                loadDictation();
-            } else {
-                showScore();
-            }
-        }
-
-        function showScore() {
-            document.querySelector('.container').innerHTML = `
-                <img src="/photo_2024-07-11_13-50-40.jpg" alt="Logo" class="logo" />
-                <h2>Natijangiz</h2>
-                <div class="score-box">
-                    To‘g‘ri javoblar: <b>${correctCount}</b> ta<br>
-                    Noto‘g‘ri javoblar: <b>${wrongCount}</b> ta<br>
-                    Umumiy ball: <b>${Math.round((correctCount / dictations.length) * 100)}%</b>
-                </div>
-                <div style="margin-top:24px;">
-                    <a href="diktant.html" class="check-btn">Qayta boshlash</a>
-                    <a href="index.html" class="check-btn" style="margin-left:10px;">Bosh sahifa</a>
-                    <a href="profil.html" class="check-btn" style="margin-left:10px;">Profil</a>
-                    <a href="foydali_soz.html" class="check-btn" style="margin-left:10px;">Foydali so‘zlar</a>
-                </div>
+            roundEl.textContent = currentIdx + 1;
+            answer.value = "";
+            // savolni va uning o'zbek tarjimasini ko'rsatamiz (audio yo'q)
+            sentenceBox.innerHTML = `
+                <div style="font-size:1.6rem;">${pool[currentIdx].ar}</div>
+                <div class="translation">${pool[currentIdx].uz}</div>
             `;
         }
 
-        window.onload = loadDictation;
+        // audio funksiyalari qilib qoladi, lekin hozircha bo'sh (hech nima qilmaydi)
+        function speakSentence(text) {
+            // audio o'chirilgan — hech narsa qilmaydi
+        }
+
+        function speak(text, lang = 'ar-SA') {
+            // audio o'chirilgan — hech narsa qilmaydi
+        }
+
+        function normalize(s) {
+            return s.toLowerCase().replace(/[\u064B-\u0652]/g, '') // remove Arabic diacritics
+                .replace(/[^\p{L}\p{N}]+/gu, '').trim();
+        }
+
+        function check() {
+            if (currentIdx < 0) return;
+            const user = normalize(answer.value);
+            const correct = normalize(pool[currentIdx].ar);
+            if (!user) {
+                alert("Iltimos yozing.");
+                return;
+            }
+            if (user === correct) {
+                score += 1;
+                scoreEl.textContent = score;
+                flash("To'g'ri ✓", true);
+            } else {
+                flash("Noto'g'ri ✗  —  To'g'ri: " + pool[currentIdx].ar + " — " + pool[currentIdx].uz, false);
+            }
+            setTimeout(next, 900);
+        }
+
+        function flash(msg, ok) {
+            const prev = document.createElement('div');
+            prev.textContent = msg;
+            prev.style.position = 'fixed';
+            prev.style.right = '18px';
+            prev.style.top = '18px';
+            prev.style.padding = '10px 14px';
+            prev.style.borderRadius = '10px';
+            prev.style.background = ok ? "linear-gradient(90deg,#0ff, #0af)" : "linear-gradient(90deg,#f66,#c33)";
+            prev.style.color = '#001';
+            prev.style.zIndex = 9999;
+            document.body.appendChild(prev);
+            setTimeout(() => prev.remove(), 1400);
+        }
+
+        function reveal() {
+            if (currentIdx < 0) return;
+            // ko'rsatganda arabcha va uning o'zbek tarjimasini chiqazamiz
+            sentenceBox.innerHTML = `
+                <div style="font-size:1.6rem;">${pool[currentIdx].ar}</div>
+                <div class="translation">${pool[currentIdx].uz}</div>
+            `;
+        }
+
+        // Recording (optional pronunciation recording)
+        recStart.onclick = async () => {
+            if (!navigator.mediaDevices) return alert("Mikrofon qo'llab-quvvatlanmaydi");
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+                mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                mediaRecorder.onstop = () => {
+                    audioBlob = new Blob(chunks, { type: 'audio/webm' });
+                    audioUrl = URL.createObjectURL(audioBlob);
+                    recText.textContent = "saqlandi";
+                    recDot.classList.add('on');
+                }
+                mediaRecorder.start();
+                recText.textContent = "yozilmoqda";
+                recDot.classList.add('on');
+            } catch (e) {
+                alert("Mikrofonga ruxsat berilmadi");
+            }
+        };
+        recStop.onclick = () => { if (mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop(); recDot.classList.remove('on'); };
+        playRec.onclick = () => { if (audioUrl) new Audio(audioUrl).play(); else alert("Oldin yozing"); };
+
+        // Wire buttons
+        playBtn.onclick = () => {
+            if (currentIdx < 0) next(); else {
+                // qayta ko'rsatish (hech qanday audio bo'lmaydi)
+                sentenceBox.innerHTML = `
+                <div style="font-size:1.6rem;">${pool[currentIdx].ar}</div>
+                <div class="translation">${pool[currentIdx].uz}</div>
+            `;
+            }
+        }
+        replayBtn.onclick = () => {
+            if (currentIdx >= 0) {
+                sentenceBox.innerHTML = `
+                <div style="font-size:1.6rem;">${pool[currentIdx].ar}</div>
+                <div class="translation">${pool[currentIdx].uz}</div>
+            `;
+            } else alert("Avval gapni boshlang");
+        }
+        nextBtn.onclick = () => next();
+        checkBtn.onclick = () => check();
+        showBtn.onclick = () => reveal();
+        revealBtn.onclick = () => reveal();
+
+        // init
+        lenSelect.onchange = () => {
+            rounds = parseInt(lenSelect.value, 10) || 10;
+            pickPool(rounds);
+        };
+
+        // start default
+        rounds = parseInt(lenSelect.value, 10) || 10;
+        pickPool(rounds);
+
+        // keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { check(); }
+            if (e.key === ' ' && document.activeElement.tagName !== 'TEXTAREA') { e.preventDefault(); playBtn.click(); }
+        });
     </script>
 </body>
 

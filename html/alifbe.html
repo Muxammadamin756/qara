@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arab Alifbosi</title>
+    <link rel="stylesheet" href="../Boshindex.html/stayle.css">
+    <style>
+        .alifbe-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            margin: 40px 0;
+        }
+
+        .harf-card {
+            background: #232323;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #00c3ff33, 0 2px 8px #000a;
+            width: 70px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #00c3ff;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            position: relative;
+            user-select: none;
+        }
+
+        .harf-card:hover,
+        .harf-card:active {
+            background: #00c3ff;
+            color: #fff;
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .harf-sound {
+            font-size: 1rem;
+            color: #fff;
+            margin-top: 8px;
+            opacity: 0.7;
+        }
+
+        .test-btn {
+            padding: 10px 24px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            background: #00c3ff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .test-btn:hover,
+        .test-btn:active {
+            background: #009fcc;
+        }
+
+        #test-area input {
+            font-size: 1.1rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border: 1px solid #00c3ff;
+            outline: none;
+        }
+
+        #test-area button {
+            padding: 4px 16px;
+            margin-right: 8px;
+            border-radius: 6px;
+            background: #232323;
+            color: #00c3ff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        #test-area button:hover,
+        #test-area button:active {
+            background: #00c3ff;
+            color: #fff;
+        }
+
+        .alifbe_links {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .alifbe_links a {
+            color: #00c3ff;
+            text-decoration: none;
+            margin: 0 1em;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .alifbe_links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .alifbe-container {
+                gap: 12px;
+            }
+
+            .harf-card {
+                width: 55px;
+                height: 70px;
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .alifbe_links a {
+                font-size: 1rem;
+                margin: 0 0.5em;
+            }
+
+            .alifbe_links {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .alifbe-container {
+                gap: 8px;
+            }
+
+            .harf-card {
+                width: 40px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            .test-btn {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+
+            #test-area {
+                font-size: 1rem;
+            }
+
+            .alifbe_links a {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .alifbe-container {
+                gap: 4px;
+            }
+
+            .harf-card {
+                width: 30px;
+                height: 38px;
+                font-size: 0.8rem;
+            }
+
+            h2 {
+                font-size: 0.9rem;
+            }
+
+            .alifbe_links a {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+آمل أن يكون هذا البرنامج مفيدًا. مرحباً بك مرحبًا
+bosh sahifa Diktant Foydali sozlar Profil murojat uchun Arab hariflari foydali tes -->
+    <div class="alifbe_links">
+        <a href="/Boshindex.html/index.html">Bosh sahifa</a>
+        <a href="./diktant.html">Diktant</a>
+        <a href="./foydali_soz.html">Foydali sozlar</a>
+        <a href="./profil.html">Profil</a>
+        <a href="./malumot.html">murojat uchun</a>
+        <a href="#">Arab Alifbosi</a>
+
+
+
+    </div>
+    <h2 style="text-align:center; margin-top:30px;">Arab Alifbesi – Oson va Qiziqarli!</h2>
+    <div class="alifbe-container" id="alifbe"></div>
+    <div style="text-align:center; margin-top:30px;">
+        <button class="test-btn" onclick="randomTest()">Testni boshlash</button>
+        <div id="test-area" style="margin-top:20px; font-size:1.3rem;"></div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+        <h3>Harflarga o'z ovozingizni yozing</h3>
+        <select id="harfSelect" style="font-size:1.1rem; padding:4px 8px; border-radius:6px;">
+            <!-- Harflar dinamik qo'shiladi -->
+        </select>
+        <button onclick="startRecord()" class="test-btn" style="padding:6px 16px;">Yozib olish</button>
+        <button onclick="stopRecord()" class="test-btn" style="padding:6px 16px;">To'xtatish</button>
+        <span id="recStatus" style="margin-left:10px; color:red;"></span>
+    </div>
+    <script>
+        // Arab harflari va o'qilishi
+        const harflar = [
+            { harf: "ا", nom: "Alif" }, { harf: "ب", nom: "Ba" }, { harf: "ت", nom: "Ta" }, { harf: "ث", nom: "Sa" },
+            { harf: "ج", nom: "Jim" }, { harf: "ح", nom: "Ha" }, { harf: "خ", nom: "Xo" }, { harf: "د", nom: "Dal" },
+            { harf: "ذ", nom: "Zal" }, { harf: "ر", nom: "Ro" }, { harf: "ز", nom: "Zo" }, { harf: "س", nom: "Sin" },
+            { harf: "ش", nom: "Shin" }, { harf: "ص", nom: "Sod" }, { harf: "ض", nom: "Dod" }, { harf: "ط", nom: "To" },
+            { harf: "ظ", nom: "Zo" }, { harf: "ع", nom: "Ayn" }, { harf: "غ", nom: "Gʻayn" }, { harf: "ف", nom: "Fa" },
+            { harf: "ق", nom: "Qof" }, { harf: "ك", nom: "Kaf" }, { harf: "ل", nom: "Lam" }, { harf: "م", nom: "Mim" },
+            { harf: "ن", nom: "Nun" }, { harf: "ه", nom: "Ha" }, { harf: "و", nom: "Vov" }, { harf: "ي", nom: "Ya" }
+        ];
+
+        // Harflarni chiqarish
+        const alifbeDiv = document.getElementById('alifbe');
+        const harfSelect = document.getElementById('harfSelect');
+        const customSounds = {}; // Harf nomi: audio blob
+
+        harflar.forEach(({ harf, nom }) => {
+            // Harf kartasi
+            const card = document.createElement('div');
+            card.className = 'harf-card';
+            card.innerHTML = `<span>${harf}</span><span class="harf-sound">${nom}</span>`;
+            card.onclick = () => {
+                if (customSounds[nom]) {
+                    playCustom(nom);
+                } else {
+                    speak(nom);
+                }
+                card.style.background = "#00c3ff";
+                card.style.color = "#fff";
+                setTimeout(() => {
+                    card.style.background = "";
+                    card.style.color = "#00c3ff";
+                }, 500);
+            };
+            alifbeDiv.appendChild(card);
+
+            // Selectga harf qo'shish
+            const opt = document.createElement('option');
+            opt.value = nom;
+            opt.textContent = `${harf} - ${nom}`;
+            harfSelect.appendChild(opt);
+        });
+
+        // Ovozli o'qish (SpeechSynthesis)
+        // function speak(text) {
+        //     if ('speechSynthesis' in window) {
+        //         const msg = new SpeechSynthesisUtterance(text);
+        //         msg.lang = 'ar-SA';
+        //         window.speechSynthesis.speak(msg);
+        //     }
+        // }
+
+        // Custom audio ijro
+        function playCustom(nom) {
+            const audio = new Audio();
+            audio.src = URL.createObjectURL(customSounds[nom]);
+            audio.play();
+        }
+
+        // Audio yozib olish
+        let mediaRecorder, audioChunks = [];
+        function startRecord() {
+            if (!navigator.mediaDevices) {
+                alert("Brauzeringiz audio yozishni qo‘llab-quvvatlamaydi.");
+                return;
+            }
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const harfNom = harfSelect.value;
+                    customSounds[harfNom] = blob;
+                    document.getElementById('recStatus').textContent = `Ovoz saqlandi: ${harfNom}`;
+                };
+                mediaRecorder.start();
+                document.getElementById('recStatus').textContent = "Yozilmoqda...";
+            }).catch(() => {
+                alert("Mikrofonga ruxsat berilmadi.");
+            });
+        }
+        function stopRecord() {
+            if (mediaRecorder && mediaRecorder.state === "recording") {
+                mediaRecorder.stop();
+                document.getElementById('recStatus').textContent = "Yozuv to‘xtatildi.";
+            }
+        }
+
+        // Qiziqarli test
+        function randomTest() {
+            const idx = Math.floor(Math.random() * harflar.length);
+            const harf = harflar[idx];
+            const testArea = document.getElementById('test-area');
+            testArea.innerHTML = `
+                <b>Bu harf qanday o'qiladi?</b><br>
+                <span style="font-size:3rem; color:#00c3ff;">${harf.harf}</span><br>
+                <input id="javob" type="text" autocomplete="off">
+                <button onclick="tekshir(${idx})">Tekshir</button>
+            `;
+            document.getElementById('javob').focus();
+        }
+        window.randomTest = randomTest;
+
+        window.tekshir = function (idx) {
+            const javob = document.getElementById('javob').value.trim().toLowerCase();
+            const togri = harflar[idx].nom.toLowerCase();
+            const testArea = document.getElementById('test-area');
+            if (javob === togri) {
+                testArea.innerHTML += `<div style="color:#0f0; margin-top:10px;">To'g'ri! 🎉</div>`;
+            } else {
+                testArea.innerHTML += `<div style="color:#f33; margin-top:10px;">Noto'g'ri. To'g'ri javob: <b>${harflar[idx].nom}</b></div>`;
+            }
+            setTimeout(randomTest, 1500);
+        }
+    </script>
+</body>
+
+</html>

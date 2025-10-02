@@ -8,8 +8,9 @@
     <style>
         body {
             background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             min-height: 100vh;
+            margin: 0;
         }
 
         nav {
@@ -21,15 +22,20 @@
         nav a {
             color: #2563eb;
             text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
-            font-size: 1.1em;
-            transition: color 0.2s;
+            font-weight: 600;
+            margin: 0 12px;
+            font-size: 1.15em;
+            letter-spacing: 0.02em;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
         }
 
-        nav a:hover {
-            color: #1e40af;
-            text-decoration: underline;
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: #2563eb;
+            text-decoration: none;
         }
 
         #alertBox {
@@ -57,18 +63,21 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 40px auto;
             background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #e0eafc;
-            padding: 36px 32px 32px 32px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px #2563eb22, 0 2px 8px #e0eafc;
+            padding: 40px 32px 32px 32px;
         }
 
         h2 {
             text-align: center;
             color: #2563eb;
             margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
         }
 
         .flashcards {
@@ -80,33 +89,38 @@
 
         .card {
             width: 170px;
-            height: 110px;
-            background: #f0f4fa;
-            border-radius: 14px;
+            height: 120px;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f0f4fa 100%);
+            border-radius: 16px;
             box-shadow: 0 2px 8px #e0eafc;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
             color: #1e293b;
             cursor: pointer;
             position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.25s, box-shadow 0.2s, background 0.2s;
             user-select: none;
             text-align: center;
             padding: 10px;
+            font-weight: 500;
+            border: 2px solid #2563eb22;
         }
 
         .card:hover {
-            transform: scale(1.04) rotate(-2deg);
-            box-shadow: 0 4px 16px #c7d2fe;
-            background: #e0e7ff;
+            transform: scale(1.06) rotate(-2deg);
+            box-shadow: 0 8px 24px #2563eb33;
+            background: linear-gradient(120deg, #2563eb 0%, #00c3ff 100%);
+            color: #fff;
         }
 
         .card.flipped {
-            background: #2563eb;
+            background: linear-gradient(120deg, #2563eb 0%, #00c3ff 100%);
             color: #fff;
-            transform: scale(1.04) rotate(2deg);
+            transform: scale(1.06) rotate(2deg);
+            box-shadow: 0 8px 24px #2563eb33;
         }
 
         .card .arabic {
@@ -114,15 +128,41 @@
             color: #2563eb;
             direction: rtl;
             margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
         }
 
         .card.flipped .arabic {
             color: #fff;
         }
 
-        @media (max-width: 700px) {
-            .flashcards {
-                gap: 10px;
+        .card .sound-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #fff;
+            color: #2563eb;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            box-shadow: 0 2px 8px #2563eb22;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .card .sound-btn:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 18px;
             }
 
             .card {
@@ -133,7 +173,7 @@
             }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
             .container {
                 padding: 10px;
             }
@@ -144,37 +184,52 @@
                 height: 70px;
                 font-size: 0.95em;
             }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 0 4px;
+                padding: 4px 6px;
+            }
         }
     </style>
 </head>
 
 <body>
     <nav>
-        <a href="index.html">Bosh sahifa</a> |
-        <a href="profil.html">Profil</a> |
-        <a href="diktant.html" id="diktantLink">Diktant</a> |
-        <a href="foydali_soz.html">Foydali so‘zlar</a>
+        <a href="/Boshindex.html/index.html">Bosh sahifa</a>
+        <a href="./diktant.html" id="diktantLink">Diktant</a>
+        <a href="profil.html">Profil</a>
+        <a href="./malumot.html">murojat uchun</a>
+        <a href="foydali_soz.html" class="active">Foydali so‘zlar</a>
+        <a href="./alifbe.html">Arab Alifbosi</a>
     </nav>
     <div id="alertBox">
-        Bu hozir qayta ishlanmoqda
+        2 soniya kuting...
     </div>
     <div class="container">
         <h2>Foydali arab so‘zlarni kartochkalar bilan yodlang!</h2>
         <div class="flashcards" id="flashcards"></div>
         <div style="margin-top:24px; text-align:center;">
-            <a href="index.html">Bosh sahifa</a>
+            <a href="index.html" style="color:#2563eb;font-weight:600;">⬅ Bosh sahifa</a>
         </div>
     </div>
     <script>
-        // Diktant linki bosilganda ogohlantirish chiqadi
-        document.getElementById('diktantLink').onclick = function(e) {
+        // Diktant linki bosilganda ogohlantirish chiqadi va keyin sahifa ochiladi
+        document.getElementById('diktantLink').onclick = function (e) {
             e.preventDefault();
+            const href = this.getAttribute('href');
             const alertBox = document.getElementById('alertBox');
             alertBox.style.display = "block";
-            alertBox.style.animation = "fadeInAlert 0.5s";
+            alertBox.style.animation = "fadeInAlert 0.4s";
+            // ko'rsatib bo'lgach, diktant sahifasiga o'tamiz
             setTimeout(() => {
                 alertBox.style.display = "none";
-            }, 2500);
+                window.location.href = href;
+            }, 800); // 800ms keyin yo'naltirish; xohlasangiz kamaytiring/ko'paytiring
         };
 
         // So‘zlar ro‘yxati
@@ -232,20 +287,42 @@
         words.forEach((w, i) => {
             const card = document.createElement('div');
             card.className = 'card';
-            card.innerHTML = `<div class="arabic">${w.ar}</div><div>${w.uz}</div>`;
-            card.onclick = function() {
+            card.innerHTML = `
+                <div class="arabic">${w.ar}</div>
+                <div>${w.uz}</div>
+                <button class="sound-btn" title="Ovoz chiqarish" onclick="event.stopPropagation(); speak('${w.ar}')">
+                    Arabic
+                </button>
+            `;
+            card.onclick = function () {
                 if (card.classList.contains('flipped')) {
-                    card.innerHTML = `<div class="arabic">${w.ar}</div><div>${w.uz}</div>`;
+                    card.innerHTML = `
+                        <div class="arabic">${w.ar}</div>
+                        <div>${w.uz}</div>
+                        <button class="sound-btn" title="Ovoz chiqarish" onclick="event.stopPropagation(); speak('${w.ar}')">🔊</button>
+                    `;
                     card.classList.remove('flipped');
                 } else {
-                    card.innerHTML = `<div>${w.tr}</div><div class="arabic">${w.ar}</div>`;
+                    card.innerHTML = `
+                        <div>${w.tr}</div>
+                        <div class="arabic">${w.ar}</div>
+                        <button class="sound-btn" title="Ovoz chiqarish" onclick="event.stopPropagation(); speak('${w.ar}')">🔊</button>
+                    `;
                     card.classList.add('flipped');
                 }
             };
             flashcards.appendChild(card);
         });
+
+        // Ovoz chiqarish funksiyasi (arab tili)
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'ar-SA';
+                window.speechSynthesis.speak(msg);
+            }
+        }
     </script>
 </body>
 
 </html>
-`

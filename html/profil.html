@@ -8,8 +8,9 @@
     <style>
         body {
             background: linear-gradient(120deg, #e0e7ff 0%, #f9fafb 100%);
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             min-height: 100vh;
+            margin: 0;
         }
 
         nav {
@@ -21,24 +22,29 @@
         nav a {
             color: #2563eb;
             text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
-            font-size: 1.1em;
-            transition: color 0.2s;
+            font-weight: 600;
+            margin: 0 12px;
+            font-size: 1.15em;
+            letter-spacing: 0.02em;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
         }
 
-        nav a:hover {
-            color: #1e40af;
-            text-decoration: underline;
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: #2563eb;
+            text-decoration: none;
         }
 
         .profile-container {
             max-width: 420px;
             margin: 60px auto;
             background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #e0eafc;
-            padding: 36px 32px 32px 32px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px #2563eb22, 0 2px 8px #e0eafc;
+            padding: 40px 32px 32px 32px;
             text-align: center;
             animation: fadeInProfile 1s;
             position: relative;
@@ -62,9 +68,10 @@
             object-fit: cover;
             border-radius: 50%;
             margin-bottom: 18px;
-            border: 4px solid #2563eb22;
-            box-shadow: 0 2px 8px #e0eafc;
+            border: 5px solid #2563eb33;
+            box-shadow: 0 2px 12px #2563eb22;
             animation: popImg 1.2s;
+            background: #f3f6fd;
         }
 
         @keyframes popImg {
@@ -84,17 +91,20 @@
         }
 
         .profile-name {
-            font-size: 1.5em;
+            font-size: 1.7em;
             color: #1e293b;
             margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
             animation: fadeInText 1.2s;
         }
 
         .profile-info {
-            font-size: 1.1em;
+            font-size: 1.13em;
             color: #334155;
             margin-bottom: 18px;
             animation: fadeInText 1.4s;
+            line-height: 1.7;
         }
 
         @keyframes fadeInText {
@@ -114,15 +124,34 @@
             margin-top: 18px;
             color: #2563eb;
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s, transform 0.2s;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 6px 18px;
+            background: #e0e7ff;
+            transition: color 0.2s, background 0.2s, transform 0.2s;
             animation: fadeInText 1.6s;
         }
 
         .back-link:hover {
-            text-decoration: underline;
-            color: #1e40af;
+            background: #2563eb;
+            color: #fff;
+            text-decoration: none;
             transform: scale(1.05);
+        }
+
+        /* Zamonaviy badge */
+        .profile-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #2563eb 60%, #00c3ff 100%);
+            color: #fff;
+            font-size: 0.95em;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            letter-spacing: 0.04em;
+            box-shadow: 0 2px 8px #2563eb22;
+            margin-top: 2px;
         }
 
         @media (max-width: 600px) {
@@ -138,23 +167,33 @@
             .profile-name {
                 font-size: 1.1em;
             }
+
+            nav a {
+                font-size: 1em;
+                margin: 0 4px;
+                padding: 4px 6px;
+            }
         }
     </style>
 </head>
 
 <body>
     <nav>
-        <a href="index.html">Bosh sahifa</a> |
-        <a href="profil.html">Profil</a> |
-        <a href="diktant.html">Diktant</a> |
+        <a href="/Boshindex.html/index.html">Bosh sahifa</a>
+        <a href="diktant.html">Diktant</a>
+        <a href="profil.html" class="active">Profil</a>
+
+
         <a href="foydali_soz.html">Foydali so‘zlar</a>
+        <a href="alifbe.html">Arab Alifbosi</a>
     </nav>
     <div class="profile-container">
-        <img src="/photo_2024-07-11_13-50-40.jpg" alt="Mening rasmi" class="profile-img">
+        <span class="profile-badge">👤 Talaba</span>
+        <img src="https://share.google/images/ABDe0tHWApJhewUrO" alt="" class="profile-img" loading="lazy" />
         <div class="profile-name">Muhammadamin</div>
         <div class="profile-info">
-            <p>Yosh: sir</p>
-            <p>Kasb: Talaba</p>
+            <p>Yosh: <b>sir</b></p>
+            <p>Kasb: <b>Talaba</b></p>
             <p>Bu men, bu dasturni 1 hafta davomida chiqardim. E'tiboringiz uchun rahmat!</p>
             <p>Qisqacha: Men arab tilini o‘rganishni va boshqalarga ham o‘rgatishni yaxshi ko‘raman.</p>
         </div>
